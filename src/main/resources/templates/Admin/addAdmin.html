@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+<section>
+<div class="container-fluid mt-3">
+
+	
+		
+		
+		
+		
+
+<a th:href="@{/myshop/admin/dashboard}"><button class="btn btn-primary mb-3">Back</button></a>
+
+<div class="row">
+<div class="col-md-4 ms-1 card shadow-md p-5">
+
+	<form th:action="@{/myshop/admin/saveAdmin}" th:object="${admin}" method="post" >
+ <h2 class="text-center">Add Admin</h2>
+ 
+  <div class="">
+    <label for="name" class="form-label">Full Name</label>
+    <input type="text" class="form-control" id="name" th:field="*{name}" required>
+  </div>
+ 
+   <div class="">
+    <label for="email" class="form-label">Email</label>
+   <input type="email" class="form-control" id="email" th:field="*{email}" required>
+  </div>
+    <div class="">
+    <label for="phone" class="form-label">Phone</label>
+   <input type="text" class="form-control" id="phone" th:field="*{phone}" required>
+  </div>
+   
+   <div class="">
+    <label for="Password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" th:field="*{password}" required>
+  </div>
+
+ 
+
+<div>
+    <button type="submit" class="btn  btn-large text-white col-12 mt-5" style="background-color: #006400;">Save</button>
+
+</div>    
+</form>
+</div>
+<div class="col-md-7 ms-1 card p-4">
+
+<h3 class="text-center">Admin Details</h3>
+	<table class="table my-3">
+    <tr class=" text-white" style="background-color: #006400;">
+        <th >Full Name</th>
+    
+       
+    
+        <th>Email</th>
+        <th>Phone</th>
+      
+      <th>Action</th>
+    
+    </tr>
+    <tr th:each="a : ${admins}">
+    <td th:text="${a.name}"></td>
+    <td th:text="${a.email}"></td>
+        <td th:text="${a.phone}"></td>
+      
+    
+<td>
+    <th:block
+        th:if="${user.email == 'admin@test.com' 
+                and a.email != user.email}">
+        <a th:href="@{/myshop/admin/deleteAdmin/{id}(id=${a.id})}">
+            <button class="btn btn-danger">Delete</button>
+        </a>
+    </th:block>
+</td>
+   
+    </tr>
+</table>
+
+</div>
+</div>
+</div>
+
+</section>
+</html>

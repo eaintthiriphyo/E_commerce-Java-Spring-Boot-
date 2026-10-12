@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<section>
+
+	
+
+			<div th:if="${cartEmpty}">
+				<h2 class="text-center">Your Cart is empty!</h2>
+			</div>
+
+			<div class="container-fluid mx-auto">
+		<a th:href="@{/myshop/user/orderDetails}"><button
+			class="btn btn-warning">View Order</button> <a>
+
+				<div class="row" th:if="${!cartEmpty}">
+
+					<div class="col-md-11">
+						<h4 class="text-center mb-4">Cart Products</h4>
+
+						<table class="table table-striped  shadow-lg ">
+							<thead>
+								<tr style="background-color: #006400;" class="text-white py-2">
+									<th>Image</th>
+									<th>Product Name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total Price</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="c:${cartList}">
+								
+									<td><img
+										th:src="@{'/uploads/product_img/' + ${c.product.image}}"
+										height="100" width="100"></td>
+
+									<td th:text="${c.product.name}"></td>
+
+									<td th:text="${c.product.discountPrice}"></td>
+
+									<td><a
+										th:href="@{'/myshop/user/updateQuantity?value=minus&c_id='+${c.id}}">
+											[<i class="fa-solid fa-minus " style="color: #006400;"></i>]
+									</a>[[${c.quantity}]] <a
+										th:href="@{'/myshop/user/updateQuantity?value=plus&c_id='+${c.id}}">
+											[<i class="fa-solid fa-plus " style="color: #006400;"></i>]
+									</a></td>
+									<td th:text="${c.totalPrice}"></td>
+
+
+									<td><a
+										th:href="@{'/myshop/user/deleteCart?c_id='+${c.id}}">
+
+											<button class="btn btn-danger">Remove</button>
+									</a></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-5  ">
+
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Delivery Address</h5>
+
+								<p>[[${user.name}]]</p>
+								<p>[[${user.address}]]</p>
+								<p>[[${user.city}]]</p>
+								<p>[[${user.phone}]]</p>
+
+								<a th:href="@{'/myshop/user/editProfile?u_id=' + ${user.id}}"
+									class="card-link">Change Address</a>
+
+							</div>
+
+						</div>
+						<div class="card mt-3">
+							<div class="card-body">
+								<h5 class="card-title">Payment</h5>
+								<table class="table">
+									<tr>
+										<td class="fw-bold">Amount</td>
+										<td colspan="2"></td>
+										<td class="fw-bold">[[${totalOrderPrice}]]</td>
+									</tr>
+									<tr>
+										<td class="fw-bold">Shpping Charge</td>
+										<td colspan="2"></td>
+										<td class="fw-bold">$30</td>
+									</tr>
+									<tr>
+										<td class="fw-bold">Tax:</td>
+										<td colspan="2"></td>
+										<td class="fw-bold">[[${totalOrderPrice*0.05}]]</td>
+									</tr>
+
+									<tr style="border-top: 3px solid #000;">
+										<td class="fw-bold">Total Amount</td>
+										<td colspan="2"></td>
+										<td class="fw-bold">[[${totalOrderPrice + 30 +
+											(totalOrderPrice * 0.05)}]]</td>
+									</tr>
+								</table>
+
+
+								<div>
+									<form method="post" th:action="@{/myshop/user/saveOrder}">
+										<div class="mb-3">
+											<label for="payment" class="form-label ">Payment Mode</label>
+											<select name="payment" class="form-control">
+
+
+												<option th:each="payment:${payment}"
+													th:value="${payment.id}" th:text="${payment.payment_type}"></option>
+
+											</select>
+										</div>
+										<button class="btn text-white w-100" style="background-color: #006400;">Order Confirm</button>
+									</form>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+</section>
+
+</html>

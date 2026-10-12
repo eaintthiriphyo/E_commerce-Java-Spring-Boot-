@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg fixed-top py-3" th:fragment="navbar">
+	<div class="container-fluid mx-auto">
+		<a class="navbar-brand text-white fs-4" href="#">Beauty</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarScroll" aria-controls="navbarScroll"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+
+
+		<div class="collapse navbar-collapse" id="navbarScroll">
+			<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+				style="-bs-scroll-height: 100px;">
+
+				<li class="nav-item"><a class="nav-link fs-5"
+					th:href="${role == 'ROLE_ADMIN' ? '/myshop/admin/dashboard' : '/myshop/'}">
+						Home </a></li>
+
+				<li class="nav-item"
+					th:if="${user == null or (user != null and user.role == 'ROLE_USER')}"><a
+					class="nav-link fs-5" th:href="@{/myshop/product}">Products</a></li>
+				<li class="nav-item dropdown"
+					th:if="${user == null or (user != null and user.role == 'ROLE_USER')}">
+					<a class="nav-link dropdown-toggle fs-5" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
+					<ul class="dropdown-menu">
+						<li th:each="c : ${catList}"><a class="dropdown-item"
+							th:href="@{'/myshop/product?category=' + ${c.title}}">[[${c.title}]]</a>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+
+
+			<div class="d-flex">
+
+				<th:block th:if=${user==null}>
+
+					<a class="nav-link active p-2 pilled" aria-current="page"
+						th:href="@{/myshop/login}">LOGIN</a>
+					<a class="nav-link active p-2" aria-current="page"
+						th:href="@{/myshop/assign}">REGISTER</a>
+			</div>
+			</th:block>
+			<th:block th:if=${user!=null}>
+
+				<div class="d-flex">
+					<a class="nav-link p-2" th:href="@{/myshop/user/viewCart}"
+						th:if="${user == null or (user != null and user.role == 'ROLE_USER')}"><button
+							class="btn btn-sm border p-2">
+							<i class="fa-solid fa-cart-plus fs-5" style="color:white;"></i><span class="text-white">[[${countCart}]]
+						</span></button></a>
+
+
+
+
+
+
+					<ul class="navbar-nav me-auto  my-lg-0 navbar-nav-scroll"
+						style="-bs-scroll-height: 100px;">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> <img
+								th:src="@{'/uploads/user_img/' + ${user.image}}"
+								style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;" />
+								<ul class="dropdown-menu dropdown-menu-end px-3">
+
+									<div class="d-flex justify-content-center">
+									
+									<img
+								th:src="@{'/uploads/user_img/' + ${user.image}}"
+								style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" class="text-center my-3"/></br>
+								
+									</div>
+									<h5 class="text-center">[[${user.name}]]</h5>
+									<h5 class="text-center">[[${user.email}]]</h5>
+									<a 
+										th:href="${role == 'ROLE_ADMIN'} ? 
+            @{/myshop/admin/editProfile(u_id=${user.id})} : 
+            @{/myshop/user/editProfile(u_id=${user.id})}">
+										<p>See More<p>
+									</a>
+									
+									<hr>
+									<a class="dropdown-item btn btn-primary"
+										th:if="${role == 'ROLE_USER'}"
+										th:href="@{/myshop/user/deleteAccount/{id}(id=${user.id})}">
+										<button class="btn btn-danger">Delete Account</button>
+									</a>
+
+
+								</ul></li>
+								
+<a class="nav-link active" aria-current="page"
+						th:href="@{/myshop/logout}"><button class="btn btn-light">Logout</button></a>
+								
+					</ul>
+				</div>
+			</th:block>
+
+		</div>
+	</div>
+</nav>
+
+
+
+

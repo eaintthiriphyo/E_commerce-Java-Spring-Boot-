@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Admin Login</title>
+<link rel="stylesheet" th:href="@{/bootstrap/bootstrap-5.2.3-dist/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+
+<section>
+
+<div  class="mx-auto card col-md-4 pb-5 pt-3 px-3 shadow-md">
+<h3 class="text-center mb-4">Admin Login</h3>
+
+<form th:action="@{/myshop/admin/login}" method="post" th:object="${user}">
+ 
+  
+  <div class="">
+    <label for="inputEmail4" class="form-label" required>Email Address</label>
+    <input type="email" class="form-control" id="email" th:field="*{email}">
+  </div>
+ 
+  <div class="">
+    <label for="inputPassword" class="form-label" required>Password</label>
+    <input type="password" class="form-control" id="password4" name="password" th:field-"*{password}">
+  </div>
+    
+ 
+
+<div>
+    <button type="submit" class="btn  btn-large btn-primary col-12 mt-5">Login</button>
+
+</div>    
+</form>
+</div>
+
+</section>
+</body>
+<script th:src="@{/bootstrap/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js}"></script>
+
+</html>

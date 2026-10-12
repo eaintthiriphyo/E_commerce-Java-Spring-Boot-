@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<section>
+
+	<div class="container mx-auto">
+		<h2 class="text-center mb-4">Products List</h2>
+
+		<table class="table table-striped  shadow-lg ">
+			<thead>
+				<tr class="text-white" style="background-color: #006400;">
+				<th></th>
+					<th>Image</th>
+					<th>Title</th>
+					<th>Stock</th>
+					<th>Category</th>
+					<th>Original Price</th>
+					<th>Discount</th>
+					<th>Discount Price</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p : ${products}">
+				<td></td>
+					<td> <img th:src="@{'/uploads/product_img/' + ${p.image}}" width="100" height="100"></td>
+
+					<td th:text="${p.name}"></td>
+
+					<td th:text="${p.stock}"></td>
+
+					<td
+						th:text="${p.category != null ? p.category.title : 'No Category'}"></td>
+
+					<td th:text="${p.price}"></td>
+
+
+<td th:text="${p.discount} + '%'"></td>
+
+					<td th:text="${p.discountPrice}"></td>
+
+					<td><a th:href="@{/myshop/admin/editProduct/{id}(id=${p.id})}">
+							<button class="btn btn-primary">Edit</button>
+					</a> <a th:href="@{/myshop/admin/deleteProduct/{id}(id=${p.id})}"
+						onclick="return confirm('Are you sure you want to delete?')">
+							<button class="btn btn-danger">Delete</button>
+					</a>
+					
+					<a th:href="@{/myshop/admin/discount/{id}(id=${p.id})}">
+						
+							<button class="btn btn-warning">Discount</button>
+					</a>
+					 </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+</html>

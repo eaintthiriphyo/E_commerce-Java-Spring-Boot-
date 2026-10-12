@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+
+<body>
+
+<section class="container mx-auto">
+
+<h2 class="text-center mb-4">Admin Dashboard</h2>
+
+<div class="row g-4">
+ 
+ 
+
+<div class="col-lg-4 col-md-5 col-sm-12">
+<div class="card my-3 shadow-lg g-2" style="width: 18rem;">
+  <div class="card-body">
+    <a th:href="@{/myshop/admin/addProduct}" class="card-link text-center" style="text-decoration:none">
+    <h1 ><i class="fa-solid fa-square-plus" style="color: #74C0FC;"></i></h1>
+    
+    <h4 class="card-title text-black">Add Products</h4>
+    </a>
+  </div>
+</div></div>
+<div class="col-lg-4 col-md-5 col-sm-12 ">
+<div class="card my-3 shadow-lg g-2" style="width: 18rem;">
+  <div class="card-body">
+    <a th:href="@{/myshop/admin/category}" class="card-link text-center" style="text-decoration:none">
+    <h1 ><i class="fa-solid fa-rectangle-list" style="color: #74C0FC;"></i></h1>
+   
+    <h4 class="card-title text-black">Category</h4>
+    </a>
+  </div>
+</div></div>
+<div class="col-lg-4 col-md-5 col-sm-12 ">
+<div class="card my-3 shadow-lg" style="width: 18rem;">
+  <div class="card-body">
+    <a th:href="@{/myshop/admin/viewProduct}" class="card-link text-center" style="text-decoration:none">
+    <h1 ><i class="fa-solid fa-book-open text-danger"></i></h1>
+    
+    <h4 class="card-title text-black">View products</h4>
+    </a>
+  </div>
+</div></div>
+<div class="col-lg-4 col-md-5 col-sm-12">
+<div class="card my-3 shadow-lg" style="width: 18rem;">
+  <div class="card-body">
+    <a th:href="@{/myshop/admin/viewOrders}" class="card-link text-center" style="text-decoration:none">
+    <h1 ><i class="fa-solid fa-basket-shopping" style="color: #FFD43B;"></i></h1>
+    
+    <h4 class="card-title text-black">Orders</h4>
+    </a>
+  </div>
+</div></div>
+<div class="col-lg-4 col-md-5 col-sm-12 ">
+<div class="card my-3 shadow-lg" style="width: 18rem;">
+  <div class="card-body">
+    <a th:href="@{/myshop/admin/viewUsers}" class="card-link text-center" style="text-decoration:none">
+    <h1 ><i class="fa-solid fa-users" style="color: #74C0FC;"></i></h1>
+    
+    <h4 class="card-title text-black">Users</h4>
+    </a>
+  </div>
+</div></div>
+ 
+<div class="col-lg-4 col-md-5 col-sm-12 ">
+ 
+<div class="card my-3 shadow-lg" style="width: 18rem; ">
+  <div class="card-body">
+    <a th:href="@{/myshop/admin/addAdmin}" class="card-link text-center" style="text-decoration:none">
+    <h1 ><i class="fa-solid fa-circle-user" style="color: #74C0FC;"></i></h1>
+    
+    <h4 class="card-title text-black">Add Admin</h4>
+    </a>
+  </div>
+</div>
+</div>
+ 
+</div>
+</div>
+</section>
+
+</body>
+
+
+
+</html>

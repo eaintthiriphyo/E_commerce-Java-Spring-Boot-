@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" th:href="@{/bootstrap/bootstrap-5.2.3-dist/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+
+<section>
+
+<div class="container-fluid text-center mx-auto">
+<h1><i class="fa-solid fa-circle-check fs-1" style="color: #006400;"></i></h1>
+<h3>Thank You</h3> 
+<h5>Your Order Successfully</h5>
+<p>With in 7 Days Your Product Will be Delivered in your Address</p>
+<a th:href="@{/myshop/}"><button class="btn btn-primary me-2">Home</button></a>
+<a th:href="@{/myshop/user/orderDetails}"><button class="btn btn-danger">View Order</button><a>
+
+</div>
+
+</section>
+</body>
+<script th:src="@{/bootstrap/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js}"></script>
+
+</html>

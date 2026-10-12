@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<section>
+
+	
+		<div class="row">
+		
+		
+<div class="col-md-5 card shadow-md p-5 mx-auto">
+		<a th:href="@{/myshop/admin/viewProduct}" ><button class="btn btn-success mb-3">view product</button></a>
+
+    <h2 class="text-center">Add Product</h2>
+    
+    <form th:action="@{/myshop/admin/saveProduct}" 
+           
+          method="post" 
+          enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="name" name="name" required> 
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" 
+                      id="description" 
+                      name="description"
+                      rows="4" 
+                      required
+                      placeholder="Enter product description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-control" name="category">
+            <option value=""disabled selected >Select Option</option>
+            
+                <option th:each="c:${catList}"
+                th:value="${c.id}"
+                th:text="${c.title}">
+                </option>
+                
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" class="form-control" id="price" name="price" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="text" class="form-control" id="stock" name="stock" required>
+        </div>
+
+       
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="file">
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success col-12">Save</button>
+        </div>
+        
+    </form>
+</div>
+
+</section>
+</html>

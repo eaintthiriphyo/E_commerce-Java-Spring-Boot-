@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<section>
+	<div class="container mx-auto table-responsive">
+		<h4 class="text-center mb-4">User Details</h4>
+
+		<table
+			class="table table-bordered table-striped  shadow-lg ">
+
+<tr style="background-color: #006400;" class="text-white">
+				<th>Image</th>
+				<th>Full Name</th>
+				<th>Email</th>
+				<th>Mobile No</th>
+				<th>Address</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+			<tr th:each="usr:${users}">
+				<td><img th:src="@{'/uploads/user_img/' + ${usr.image}}"
+					width="70" height="70"></td>
+				<td th:text="${usr.name}"></td>
+				<td th:text="${usr.email}"></td>
+				<td th:text="${usr.phone}"></td>
+
+
+				<td
+					th:text="${usr.address} + ', ' + ${usr.city} + ', ' + ${usr.state}"></td>
+				
+				<td><span th:text="${usr.active} ? 'Active' : 'Inactive'"
+					th:classappend="${usr.active} ? 'badge bg-success' : 'badge bg-danger'"></span>
+				</td>
+				<td><a th:if="${role == 'ROLE_ADMIN' and !usr.active}"
+					th:href="@{/myshop/admin/deleteUserAcc/{id}(id=${usr.id})}"
+					onclick="return confirm('Are you sure you want to delete this user?');">
+						<button class="btn btn-danger">Delete</button>
+				</a></td>
+
+
+
+
+
+
+			</tr>
+		</table>
+	</div>
+
+</section>
+
+</body>
+</html>

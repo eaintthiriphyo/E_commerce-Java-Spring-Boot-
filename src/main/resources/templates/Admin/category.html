@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<body>
+	<section>
+
+		
+
+	
+		<div class="row mx-auto">
+		
+	
+			<div class="col-md-4  ms-1 card shadow-md p-5">
+				<h2 class="text-center">Category Add</h2>
+				<form th:action="@{/myshop/admin/addCategory}" method="post"
+					enctype="multipart/form-data">
+
+
+
+
+
+
+
+
+
+
+					<div class="">
+						<label for="Title" class="form-label">Title</label> <input
+							type="text" class="form-control" id="title" name="title" required>
+
+
+
+					</div>
+					<div class="">
+						<label for="Image" class="form-label">Image</label> <input
+							type="file" class="form-control" id="image" name="file">
+
+
+
+					</div>
+
+
+
+
+
+					<div>
+						<button type="submit"
+							class="btn  btn-large col-12 mt-5 text-white" style="background-color: #006400;">Add</button>
+
+					</div>
+				</form>
+			</div>
+			<div class="col-md-7 ms-1 card p-4">
+
+				<h3 class="text-center">Category Details</h3>
+
+				<table class="table my-3">
+					<tr style="background-color: #006400;" class="text-white">
+						<th>Image</th>
+						<th>Category Name</th>
+						<th>Action</th>
+
+					</tr>
+					<tr th:each="c : ${categoryList}">
+
+
+						<td><img th:src="@{'/uploads/category_img/' + ${c.image}}"
+							width="70" height="70"></td>
+						<td th:text="${c.title}"></td>
+						<td><a
+							th:href="@{/myshop/admin/editCategory/{id}(id=${c.id})}"><button
+									class="btn btn-primary">Edit</button></a> <a
+							th:href="@{/myshop/admin/deleteCategory/{id}(id=${c.id})}"><button
+									class="btn btn-danger">Delete</button></a></td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+	</section>
+</body>
+</html>

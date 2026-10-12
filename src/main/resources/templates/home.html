@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" th:href="@{/bootstrap/bootstrap-5.2.3-dist/css/bootstrap.min.css}"/>
+<style>
+* {
+	box-sizing: 0;
+	margin: 0;
+	padding: 0;
+}
+
+
+</style>
+</head>
+<body>
+
+<section>
+
+	<div class="container-fluid ">
+		<img class="img-fluid" th:src="@{/images/banner2.jpg}"
+			width="95%" />
+	</div>
+
+		
+
+<!--Product-->
+<div class="container-fluid p-3" >
+		
+					<div class="row">
+						<h2 class="my-5 fw-bold">Products</h2>
+						<div th:if="${#lists.isEmpty(products)}">
+							<h3 class="text-center text-danger">Prodcuts Are Not
+								Avaliable</h3>
+						</div>
+						<div>
+
+							<div class="row">
+    <div class="col-lg-2 col-md-3 mb-4"
+         th:if="${!#lists.isEmpty(products)}"
+         th:each="p : ${products}">
+
+        <div class="card shadow-lg h-100  ">
+            <div class="card-body text-center">
+
+                <img
+                    th:src="@{'/uploads/product_img/' + ${p.image}}"
+                    class="card-img-top img-fluid mb-2"
+                    style="height:250px; object-fit:cover;">
+
+                <p class="fw-bold mb-1">[[${p.name}]]</p>
+
+                <p class="mb-2 small">
+                    <span class="fw-semibold">[[${p.discountPrice}]]</span> kyats<br>
+                    <span class="text-decoration-line-through text-secondary">
+                        [[${p.price}]]
+                    </span>
+                    <span class="text-danger">
+                        [[${p.discount}]]% off
+                    </span>
+                </p>
+
+               <a th:href="@{/myshop/user/viewProduct/{id}(id=${p.id})}">
+<button class="btn text-white " style="background-color: #006400;">
+    View Details
+</button>
+											</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+</section>
+</body>
+<script th:src="@{/bootstrap/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js}"></script>
+
+</html>

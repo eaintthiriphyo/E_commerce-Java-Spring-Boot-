@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<section>
+	
+	
+
+
+	<div class="container mx-auto" >
+
+		<div class="row">
+
+
+
+    <h2 class="text-center mb-4">Your Orders</h2>
+
+			<table class="table table-striped  shadow-lg ">
+				<thead>
+					<tr style="background-color: #006400;" class="text-white p-3">
+
+						<th>Order Date</th>
+						<th>Order Id</th>
+						<th>Product Details</th>
+						<th>Quantity</th>
+						<th>Total Price</th>
+						<th>Payment Type</th>
+						<th>Status</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="o : ${orderList}">
+						<td th:text="${o.order_date}"></td>
+
+
+						<td th:text="${o.id}"></td>
+						<td>
+							<ul>
+								<li th:each="p : ${o.order_products}" class="list-group-item p-1 border-bottom-1" 
+									th:text="${p.product.name}"></li>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li th:each="p : ${o.order_products}" th:text="${p.quantity}" class="list-group-item p-1 border-bottom-1" ></li>
+							</ul>
+						</td>
+						
+						<td th:text="${o.total_price}"></td>
+						<td th:text="${o.payment.payment_type}"></td>
+						<td th:text="${o.order_status}"></td>
+
+
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+		</div>
+</section>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<section>
+
+	<div class="container mx-auto">
+		<h2 class="text-center mb-4">Customer Order</h2>
+
+		<table class="table table-striped  shadow-lg ">
+			<thead>
+				<tr style="background-color: #006400;" class="text-white">
+				
+					<th>Order Date</th>
+					<th>Order ID</th>
+					<th>Delivery Address</th>
+					<th>Product Details</th>
+					<th>Payment Types</th>
+					<th>Status</th>
+				
+					<th>Action</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="o : ${orderList}">
+    <td th:text="${o.order_date}"></td>
+        <td th:text="${o.id}"></td>
+<td th:text="${o.user.address} + ', ' + ${o.user.city} + ', ' + ${o.user.state}"></td>
+        
+<td>
+    <p th:each="p : ${o.order_products}" 
+          th:text="${p.product.name} + ' (Qty: ' + ${p.quantity} + ')'">
+    </p>
+    <br/>
+    <strong>Total: </strong><span th:text="${o.total_price} + ' $'"></span>
+</td>
+    <td th:text="${o.payment.payment_type}"></td>
+    <td th:text="${o.order_status}"></td>
+
+    
+    <form th:action="@{/myshop/admin/updateOrderStatus}" method="post">
+    <input type="hidden" name="orderId" th:value="${o.id}"/>
+
+    <td>
+        <select name="status" class="form-select">
+            <option th:selected="${o.order_status == 'Order Processing'}" value="Order Processing">Pending</option>
+            <option th:selected="${o.order_status == 'Order Received'}" value="Order Received">Order Received</option>
+            <option th:selected="${o.order_status == 'Order packed'}" value="Order packed">Order packed</option>
+            <option th:selected="${o.order_status == 'Order Delivery'}" value="Order Delivery">Order Delivery</option>
+             <option th:selected="${o.order_status == 'Order Delivered'}" value="Order Delivery">Order Delivered</option>
+            
+        </select>
+    </td>
+    
+
+    <td>
+        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+    </td>
+</form>
+    
+    </tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+</html>

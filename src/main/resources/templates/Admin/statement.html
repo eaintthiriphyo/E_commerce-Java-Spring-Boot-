@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+
+<section>
+
+	<div class="container-fluid mx-auto table-responsive">
+		<h4 class="text-center mb-4">Statement</h4>
+<form action="" method="post">
+<div class="mb-3">
+    <input type="date"id="orderDate" class="col-2" name="orderDate">
+   <button type="submit" class="btn btn-primary">Search</button>
+</div>
+
+</form>
+		<table class="table table-bordered table-striped table-hover shadow-lg ">
+
+			<tr>
+				<th>Order Date</th>
+				<th>Order ID</th>
+				<th>Delivery Address</th>
+				<th>Product Details</th>
+				<th>Payment Type</th>
+				<th>Status</th>
+				
+
+
+
+			</tr>
+			<tr>
+	
+			</tr>
+		</table>
+	</div>
+
+</section>
+
+</body>
+</html>

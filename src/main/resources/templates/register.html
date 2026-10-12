@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<body>
+	<section>
+
+
+	
+		<div
+			class="container d-flex justify-content-center align-items-center">
+
+			<div class="col-6 my-5 card p-5">
+				<form class="row g-3" method="post"
+					th:action="@{/myshop/addRegister}" th:object="${users}"
+					enctype="multipart/form-data">
+
+
+					<h3 class="text-center">Register</h3>
+					<div class="col-md-6">
+						<label for="inputName" class="form-label">Full Name</label> <input
+							type="text" class="form-control" th:field="*{name}">
+						<p class="text-danger" th:if="${#fields.hasErrors('name')}"
+							th:errors="*{name}"></p>
+
+					</div>
+					<div class="col-md-6">
+						<label for="inputPhone" class="form-label">Mobile Number</label> <input
+							type="text" class="form-control" id="phone" th:field="*{phone}">
+						<p class="text-danger" th:if="${#fields.hasErrors('phone')}"
+							th:errors="*{phone}"></p>
+					</div>
+					<div class="col-md-12">
+						<label for="inputEmail4" class="form-label">Email</label> <input
+							type="email" class="form-control" id="inputEmail4"
+							th:field="*{email}" >
+						<p class="text-danger" th:if="${#fields.hasErrors('email')}"
+							th:errors="*{email}"></p>
+					</div>
+					<div class="col-md-6">
+						<label for="inputAddress" class="form-label">Address</label> <input
+							type="text" class="form-control" id="address"
+							placeholder="1234 Main St" th:field="*{address}" required>
+							<p class="text-danger" th:if="${#fields.hasErrors('address')}"
+							th:errors="*{address}"></p>
+					</div>
+					<div class="col-md-6">
+						<label for="inputCity" class="form-label">City</label> <input
+							type="text" class="form-control" id="city" th:field="*{city}"
+							placeholder="Yangon" required>
+							<p class="text-danger" th:if="${#fields.hasErrors('city')}"
+							th:errors="*{city}"></p>
+					</div>
+					<div class="col-md-6">
+						<label for="inputState" class="form-label">State</label> <input
+							type="text" class="form-control" id="state" placeholder="Yangon"
+							th:field="*{state}">
+							<p class="text-danger" th:if="${#fields.hasErrors('state')}"
+							th:errors="*{state}"></p>
+					</div>
+					<div class="col-md-6">
+						<label for="inputPincode" class="form-label">Pincode</label> <input
+							type="text" class="form-control" th:field="*{pincode}" >
+							<p class="text-danger" th:if="${#fields.hasErrors('pincode')}"
+							th:errors="*{pincode}"></p>
+					</div>
+					<div class="col-md-6">
+						<label for="inputPassword" class="form-label">Password</label> <input
+							type="password" class="form-control" th:field="*{password}"
+							>
+						<p class="text-danger" th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}"></p>
+					</div>
+					
+
+					<div class="col-md-6">
+						<label for="confirmPassword" class="form-label">Confirm
+							Password</label> <input type="password" class="form-control"
+							th:field="*{confirmPassword}">
+						  <p class="text-danger"
+       th:if="${#fields.hasErrors('confirmPassword')}"
+       th:errors="*{confirmPassword}">
+    </p>
+					</div>
+
+
+					<div class="col-md-12">
+						<label for="profile" class="form-label">Profile Image</label> <input
+							type="file" class="form-control" id="profile" name="file">
+					</div>
+
+					<div class="col-12">
+						<button type="submit" class="btn text-white  w-100"  style="background-color: #006400;">Register</button>
+
+					</div>
+				</form>
+				<div class="mt-3 text-center">
+					<p>
+						Have an account?<a th:href="@{/myshop/login}">Login</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

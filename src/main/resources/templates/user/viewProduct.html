@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::section})}">
+
+<body>
+
+	<section>
+
+
+		<!--Product-->
+		<div class="container bg-light p-3">
+			<div class="row">
+
+
+
+
+				<div class="col-md-10 card p-5" th:each="product : ${product}">
+					<div class="row">
+						<div class="col-md-5 text-end">
+							<div class="card-body text-center">
+								<img th:src="@{'/uploads/product_img/' + ${product.image}}"
+									width="150%" class="card-img-top " height="250px">
+
+
+							</div>
+						</div>
+						<div class="col-md-5">
+							<h5 class="fs-3">[[${product.name}]]</h5>
+							<p class=fs-5>
+								<span class="fw-bold">Description:</span><br>[[${product.description}]]
+							</p>
+							<p >
+								<span class="fw-bold fs-5">Product Details:</span> </br>Status :<span
+									th:if="${product.stock > 0}" class="text-white bg-success p-1 rounded">Available</span>
+								<span th:unless="${product.stock > 0}" class="text-danger">Out
+									Of Stock</span> </br> <span>Category: [[${product.category.title}]]</span>
+							</p>
+
+							<p class=fs-5>
+								<span class="fw-bold"> Price:
+									[[${product.discountPrice}]] Kyats </span></br> <span
+									class="text-decoration-line-through">[[${product.Price}]]
+								[[${product.discount}]]</span><span class="text-danger">%off</span>
+
+							</p>
+
+
+
+							
+
+							<form th:action="@{/myshop/user/addToCard/{p_id}(p_id=${product.id})}"
+      method="post">
+
+    <button type="submit"
+            class="btn text-white w-100" style="background-color: #006400;"
+            th:disabled="${product.stock <= 0}">
+        Add To Cart
+    </button>
+</form>
+							
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+	</section>
+</body>
+<script
+	th:src="@{/bootstrap/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js}"></script>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)" >
+<head>
+<meta charset="UTF-8">
+<title>My Shopping Web</title>
+<link rel="stylesheet"
+      th:href="@{/bootstrap/bootstrap-5.2.3-dist/css/bootstrap.min.css}">
+      
+      <link rel="stylesheet" th:href="@{/fontawesome/css/all.min.css}"/>
+      
+      
+      <style>
+* {
+	box-sizing: 0;
+	margin: 0;
+	padding: 0;
+}
+
+    nav {
+	background-color: rgb(13, 110, 253);
+}
+
+nav .nav-link {
+	color: white;
+}
+
+
+</style>
+  
+
+</head>
+<body>
+
+<!--NavBar-->
+<div th:replace="~{fragments/adminNavbar::navbar}"></div>
+
+<!-- Content -->
+<main style="margin-top: 100px;">
+<div th:replace="${content}"></div>
+
+</main>
+</body>
+<script th:src="@{/bootstrap/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/fontawesome/js/all.min.js}"></script>
